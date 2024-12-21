@@ -231,6 +231,7 @@ function partialUsingArguments(fn, ...args1) {
   };
 }
 
+// !  10
 /**
  * Returns the id generator function that returns next integer starting
  * from specified number every time when invoking.
@@ -248,8 +249,13 @@ function partialUsingArguments(fn, ...args1) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  let currentId = startFrom;
+  return () => {
+    const id = currentId;
+    currentId += 1;
+    return id;
+  };
 }
 
 module.exports = {
