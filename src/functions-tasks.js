@@ -124,10 +124,19 @@ function getPolynom(...coefficients) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  let cache = null;
+
+  return (...args) => {
+    if (!cache) {
+      cache = func(...args);
+    }
+
+    return cache;
+  };
 }
 
+// !  7
 /**
  * Returns the function trying to call the passed function and if it throws,
  * retrying it specified number of attempts.
@@ -143,10 +152,23 @@ function memoize(/* func */) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  return () => {
+    for (let attempt = 1; attempt <= attempts; attempt += 1) {
+      try {
+        return func();
+      } catch (error) {
+        if (attempt === attempts) {
+          throw error;
+        }
+      }
+    }
+
+    return null;
+  };
 }
 
+// !  8
 /**
  * Returns the logging wrapper for the specified method,
  * Logger has to log the start and end of calling the specified function.
