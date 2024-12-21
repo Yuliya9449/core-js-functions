@@ -22,6 +22,7 @@ function getCurrentFunctionName() {
   return getCurrentFunctionName.name;
 }
 
+// !  2
 /**
  * Returns the body of the function passed as argument.
  *
@@ -33,10 +34,11 @@ function getCurrentFunctionName() {
  *   getFunctionBody(hiHello) => "function hiHello() { console.log('hello world'); }"
  *
  */
-function getFunctionBody(/* func */) {
-  throw new Error('Not implemented');
+function getFunctionBody(func) {
+  return func ? func.toString() : '';
 }
 
+// ! 3
 /**
  * Returns the array where each element is the count of function arguments.
  *
