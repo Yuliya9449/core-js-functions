@@ -8,6 +8,7 @@
  *                                                                                             *
  ********************************************************************************************* */
 
+// !  1
 /**
  * Returns the name of the current function.
  *
@@ -18,7 +19,7 @@
  *
  */
 function getCurrentFunctionName() {
-  throw new Error('Not implemented');
+  return getCurrentFunctionName.name;
 }
 
 /**
