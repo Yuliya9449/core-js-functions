@@ -75,7 +75,7 @@ function getArgumentsCount(funcs) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (x) {
+  return (x) => {
     return x ** exponent;
   };
 }
@@ -94,10 +94,22 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...coefficients) {
+  const coefficientsLength = coefficients.length;
+
+  if (coefficientsLength === 0) {
+    return null;
+  }
+
+  return (x) => {
+    return coefficients.reduce((acc, coefficient, idx) => {
+      const idxFromEnd = coefficientsLength - idx - 1;
+      return acc + coefficient * x ** idxFromEnd;
+    }, 0);
+  };
 }
 
+// !  6
 /**
  * Memoizes passed function and returns function
  * which invoked first time calls the passed function and then always returns cached result.
